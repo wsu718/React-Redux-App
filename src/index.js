@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -15,7 +15,7 @@ const store = createStore(repoReducer, applyMiddleware(thunk));
 ReactDOM.render(
     <Provider store={store}>
         <App />
-    </Provider >,
+    </Provider>,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
