@@ -1,3 +1,9 @@
+import {
+    ADD_REPO_START,
+    ADD_REPO_SUCCESS,
+    ADD_REPO_FAILURE,
+} from '../actions/repoActions';
+
 const initialState = {
     repos: [
         {
@@ -103,12 +109,36 @@ const initialState = {
             "network_count": 3125,
             "subscribers_count": 683
         }
-    ]
-
+    ],
+    isFetching: false,
+    error: ''
 }
 
 const repoReducer = (state = initialState, action) => {
+    console.log(action.payload)
+    console.log(state, action)
     switch (action.type) {
+        case ADD_REPO_START:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case ADD_REPO_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                error: '',
+                repos: [
+                    ...state.repos,
+                    action.payload
+                ]
+            }
+        case ADD_REPO_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            };
         default:
             return state;
     }
